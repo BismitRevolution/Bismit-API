@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('/{db}/posts/{id}', 'PostController@show');
+Route::get('/{db}/posts/', 'PostController@index');
 Route::post('/posts/', 'PostController@store');
+Route::get('/example', 'ExampleController@index');
 
 Route::resource('/posts', 'PostController');

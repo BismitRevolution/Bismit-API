@@ -12,9 +12,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($db)
     {
-        //
+        $posts = DB::connection($db)
+                ->table('posts')
+                ->distinct()
+                ->get();
+        return response()->json($posts);
     }
 
     /**
@@ -57,11 +61,11 @@ class PostController extends Controller
      */
     public function show($db, $id)
     {
-        $user = DB::connection($db)
+        $post = DB::connection($db)
                 ->table('posts')
                 ->where('post_id', $id)
                 ->first(); 
-        return response()->json($user);
+        return response()->json($post);
     }
 
     /**
